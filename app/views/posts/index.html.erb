@@ -11,6 +11,8 @@
     </div>
     <div>
       <%= link_to 'show', post_path(post.id) %>
+      <br>
+      <%= link_to 'edit', edit_post_path(post.id) %>
     </div>
   <% end %>
 <%= link_to 'New post', new_post_path %>
