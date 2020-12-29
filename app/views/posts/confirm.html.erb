@@ -1,8 +1,11 @@
 <h2>以下の内容で投稿する</h2>
 <%= form_with(model: @post, local: true) do |form| %>
   <%= form.hidden_field :title %>
+  <%= form.hidden_field :image %>
   <%= form.hidden_field :content %>
   <%= @post.title %>
+  <br>
+  <%= image_tag @post.image.url %>
   <br>
   <%= @post.content %>
   <br>
