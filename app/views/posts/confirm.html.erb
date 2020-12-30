@@ -1,14 +1,14 @@
 <h2>以下の内容で投稿する</h2>
 <%= form_with(model: @post, local: true) do |form| %>
   <%= form.hidden_field :title %>
-  <%= form.hidden_field :image %>
+  <%= form.hidden_field :image_cache %>
   <%= form.hidden_field :content %>
   <%= @post.title %>
   <br>
-  <%= image_tag @post.image.url %>
+  <%= image_tag @post.image.url if @post.image.url.present? %>
   <br>
   <%= @post.content %>
   <br>
   <%= form.submit "投稿する" %>
-  <%= form.submit "戻る", name: 'Back' %>
+  <%= form.submit "戻る", name: 'back' %>
 <% end %>
