@@ -9,12 +9,12 @@ class PostsController < ApplicationController
     if params[:back]
       @post = Post.new(post_params)
     else
-    @post = Post.new
+      @post = Post.new
     end
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if params[:back]
       render :new
     else
@@ -27,6 +27,11 @@ class PostsController < ApplicationController
   end
 
   def show
+    if logged_in?
+      @favorite = current_user.favorites.find_by(post_id: @post.id)
+    else
+      redirect_to new_user_path, notice: "ログインが必要です"
+    end
   end
 
   def edit
@@ -46,7 +51,7 @@ class PostsController < ApplicationController
   end
 
   def confirm
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     render :new if @post.invalid?
   end
 
