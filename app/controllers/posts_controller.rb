@@ -35,19 +35,30 @@ class PostsController < ApplicationController
   end
 
   def edit
+    unless @post.user == current_user
+      redirect_to posts_path
+    end
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to posts_path, notice: "編集しました"
+    if @post.user != current_user
+      redirect_to new_post_path
     else
+      if @post.update(post_params)
+      redirect_to posts_path, notice: "編集しました"
+      else
       render :edit
+      end
     end
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_path, notice: "削除しました"
+    if @post.user != current_user
+      redirect_to posts_path
+    else
+      @post.destroy
+      redirect_to posts_path, notice: "削除しました"
+    end
   end
 
   def confirm
