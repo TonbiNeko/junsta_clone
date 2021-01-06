@@ -3,6 +3,7 @@
 <br>
   <% @posts.each do |post| %>
     <div>
+      <p><%= post.user.name %>さんの投稿<p>
       <strong>title:</strong>
       <p><%= post.title %></p>
     </div>
