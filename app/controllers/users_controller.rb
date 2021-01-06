@@ -23,10 +23,16 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path, notice: "編集しました"
+      redirect_to user_path, notice: "アカウント情報を編集しました"
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to new_user_path, notice: "アカウントを削除しました"
   end
 
   private
