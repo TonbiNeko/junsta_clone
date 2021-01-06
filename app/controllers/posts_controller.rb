@@ -45,9 +45,9 @@ class PostsController < ApplicationController
       redirect_to new_post_path
     else
       if @post.update(post_params)
-      redirect_to posts_path, notice: "編集しました"
+        redirect_to post_path(@post.id), notice: "編集しました"
       else
-      render :edit
+        render :edit
       end
     end
   end
