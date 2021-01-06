@@ -1,3 +1,31 @@
-<h1>Edit User's profile</h1>
-<%= render 'form' %>
+<h1>Edit profile</h1>
+
+<% if @user.errors.any? %>
+  <h2><%= pluralize(@user.errors.count,"error") %>prohibited this<%= @user.name %>from being saved:</h2>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <div>
+    <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+    <%= f.label :profile_image %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <%= f.submit "Edit my account" %>
+<% end %>
 <%= link_to 'delete', user_path(@user.id), method: :delete, data: { confirm: "本当に削除していいですか？" } %>
