@@ -17,9 +17,11 @@
     <div>
       <%= link_to 'show', post_path(post.id) %>
       <br>
-      <%= link_to 'edit', edit_post_path(post.id) %>
-      <br>
-      <%= link_to 'delete', post_path(post.id), method: :delete, data: { confirm: "本当に削除していいですか？" } %>
+      <% if post.user == current_user %>
+        <%= link_to 'edit', edit_post_path(post.id) %>
+        <br>
+        <%= link_to 'delete', post_path(post.id), method: :delete, data: { confirm: "本当に削除していいですか？" } %>
+      <% end %>
     </div>
   <% end %>
 <%= link_to 'New post', new_post_path %>
