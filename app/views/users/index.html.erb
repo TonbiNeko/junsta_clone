@@ -1,0 +1,18 @@
+<p>お気に入り一覧<p>
+
+<% @favorites.each do |favorite| %>
+  <div>
+    <p><%= favorite.post.user.name %>さんの投稿<p>
+    <strong>title:</strong>
+    <p><%= favorite.post.title %></p>
+  </div>
+  <div>
+    <p><%= image_tag favorite.post.image.url if favorite.post.image.url.present? %></p>
+  </div>
+  <div>
+    <strong>content:</strong>
+    <p><%= favorite.post.content %></p>
+  </div>
+  <%= link_to 'show', post_path(favorite.post.id) %>
+<% end %>
+<%= link_to 'New post', new_post_path %>
