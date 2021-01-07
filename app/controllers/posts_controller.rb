@@ -19,6 +19,7 @@ class PostsController < ApplicationController
       render :new
     else
       if @post.save
+        ConfirmMailer.confirm_mail(@post.user).deliver
         redirect_to posts_path, notice: "投稿しました"
       else
         render :new
