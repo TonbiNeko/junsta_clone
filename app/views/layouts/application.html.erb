@@ -37,10 +37,16 @@
             </ul>
           </div>
       <% end %>
-      <% flash.each do |key,value| %>
-        <h4 class="flash_message"><%= content_tag(:div, value, class: "#{key}") %></h4>
-      <% end %>
     </header>
+    <% flash.each do |key,value| %>
+      <h4 class="flash_message"><%= content_tag(:div, value, class: "#{key}") %></h4>
+    <% end %>
     <%= yield %>
+    <footer>
+      <div class="footer">
+        <p>Junstagram by TonbiNeko</p>
+        <p> ! THANK YOU !</p>
+      </div>
+    </footer>
   </body>
 </html>
