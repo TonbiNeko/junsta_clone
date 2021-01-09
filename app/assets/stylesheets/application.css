@@ -25,12 +25,12 @@ body {
 header {
   height: 100px;
   border-style: solid;
-  border-color: skyblue;
+  border-color: rgb(81, 94, 99);
   border-width: 0px 0px 3px 0px;
   margin-bottom: 20px;
 }
 footer {
-  background-color: skyblue;
+  background-color: rgb(91, 106, 112);
   color: white;
   font-size: 0.8rem;
   height: 80px;
@@ -41,12 +41,20 @@ footer {
 .junstagram {
   font-family: cursive;
   padding-top: 15px;
+  color: black;
+  font-size: 3rem;
 }
 .flash_message {
   color: darkorange;
 }
 a {
-  color: rgb(164, 153, 241);
+  color: rgb(32, 245, 199);
+  transition: color 0.3s;
+  font-weight: bold;
+}
+a:hover {
+  color: rgb(230, 41, 41);
+  text-decoration: none;
 }
 .col-sm-3 {
   padding-top: 40px;
