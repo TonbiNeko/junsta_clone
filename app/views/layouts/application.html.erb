@@ -10,19 +10,37 @@
   </head>
 
   <body>
-
-    <% flash.each do |key,value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
-    <% if logged_in? %>
-      <p>Logged in as <%= current_user.name %><p>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
-    <% end %>
-
+    <header>
+      <% if logged_in? %>
+        <div class="container">
+          <ul class="nav justify-content-center">
+            <li class="nav-item, col-sm-6 col-md-6">
+              <h1 class="junstagram">Junstagram</h1>
+            </li>
+            <li class="nav-item, col-sm-3 col-md-3">
+              <%= link_to "プロフィール", user_path(current_user.id) %>
+            </li>
+            <li class="nav-item, col-sm-3 col-md-3">
+              <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+            </li>
+          </ul>
+        </div>
+        <% else %>
+          <div class="container">
+            <ul class="nav justify-content-center">
+              <li class="nav-item, col-sm-6 col-md-2">
+                <%= link_to "アカウント登録", new_user_path %>
+              </li>
+              <li class="nav-item, col-sm-6 col-md-2">
+                <%= link_to "ログイン", new_session_path %>
+              </li>
+            </ul>
+          </div>
+      <% end %>
+      <% flash.each do |key,value| %>
+        <h4 class="flash_message"><%= content_tag(:div, value, class: "#{key}") %></h4>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
