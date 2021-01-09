@@ -1,22 +1,20 @@
-<p>お気に入り一覧<p>
-
+<div class="container">
+  <ul class="row">
+    <li class="col-sm-12 col-md-12"><h2>お気に入り一覧</h2></li>
+    <li class="col-sm-12 col-md-6"><%= link_to "みんなの投稿", posts_path %></li>
+    <li class="col-sm-12 col-md-6"><%= link_to '新規投稿', new_post_path %></li>
+  </ul>
+</div>
 <% @favorites.each do |favorite| %>
-  <div>
-    <p><%= favorite.post.user.name %>さんの投稿<p>
-    <strong>title:</strong>
-    <p><%= favorite.post.title %></p>
+  <div class="card" style="width: 35rem;">
+    <div class="card-img-top">
+      <p><%= image_tag favorite.post.image.url if favorite.post.image.url.present? %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">投稿者：<%= favorite.post.user.name %>さんの投稿</li>
+      <li class="list-group-item">タイトル：<%= favorite.post.title %></li>
+      <li class="list-group-item">内容：<%= favorite.post.content %></li>
+      <li class="show_page_link"><%= link_to '詳細', post_path(favorite.post.id) %></li>
+    </ul>
   </div>
-  <div>
-    <p><%= image_tag favorite.post.image.url if favorite.post.image.url.present? %></p>
-  </div>
-  <div>
-    <strong>content:</strong>
-    <p><%= favorite.post.content %></p>
-  </div>
-  <%= link_to 'show', post_path(favorite.post.id) %>
 <% end %>
-<br>
-<br>
-<%= link_to "Back", posts_path %>
-<br>
-<%= link_to 'New post', new_post_path %>
