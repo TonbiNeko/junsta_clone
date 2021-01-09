@@ -1,25 +1,25 @@
 <div class="container">
   <div class="card text-center", "col-md">
     <div class="card-header">
-      <h2>Log in</h2>
+      <h1 class="junstagram">Junstagram</h1>
     </div>
     <div class="card-body">
       <%= form_with(scope: :session,url: sessions_path,local: true) do |f| %>
-        <%= f.label :email %>
+        <%= f.label :メールアドレス %>
         <br>
         <%= f.email_field :email %>
         <br>
-        <%= f.label :password %>
+        <%= f.label :パスワード %>
         <br>
         <%= f.password_field :password %>
         <br>
         <br>
-        <%= f.submit "Log in" %>
+        <%= f.submit "ログイン" %>
       <% end %>
     </div>
     <div class="card-footer">
       <p>アカウントをお持ちでない方は</p>
-      <%= link_to "Sign up", new_user_path %>
+      <%= link_to "登録する", new_user_path %>
     </div>
   </div>
 </div>

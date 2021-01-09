@@ -1,29 +1,48 @@
-<h1>Sign Up</h1>
-<% if @user.errors.any? %>
-  <h2><%= pluralize(@user.errors.count,"error") %>prohibited this<%= @user.name %>from being saved:</h2>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with(model: @user, local: true) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <div>
-    <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
-    <%= f.label :profile_image %>
-    <%= f.file_field :image %>
-    <%= f.hidden_field :image_cache %>
+<div class="container">
+  <div class="card text-center","col-md">
+    <div class="card-header">
+      <h1 class="junstagram">Junstagram</h1>
+    </div>
+    <div class="card-body">
+      <% if @user.errors.any? %>
+        <h2><%= pluralize(@user.errors.count,"個のエラー") %>があります</h2>
+        <ul class="error_messages">
+          <% @user.errors.full_messages.each do |msg| %>
+            <li class="alert alert-warning" role="alert"><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form_with(model: @user, local: true) do |f| %>
+        <%= f.label :name %>
+        <br>
+        <%= f.text_field :name %>
+        <br>
+        <%= f.label :email %>
+        <br>
+        <%= f.email_field :email %>
+        <br>
+        <%= f.label :password %>
+        <br>
+        <%= f.password_field :password %>
+        <br>
+        <%= f.label :password_confirmation %>
+        <br>
+        <%= f.password_field :password_confirmation %>
+        <br>
+        <div>
+          <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+          <%= f.label :プロフィール画像 %>
+          <br>
+          <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
+        </div>
+        <br>
+        <%= f.submit "登録する" %>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <p>アカウントをお持ちの方は</p>
+      <%= link_to "ログイン", new_session_path %>
+    </div>
   </div>
-
-  <%= f.submit "Create my account" %>
-<% end %>
+</div>
