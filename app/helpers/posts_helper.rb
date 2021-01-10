@@ -3,7 +3,7 @@ module PostsHelper
     if action_name == 'new' || action_name == 'create'
       confirm_posts_path
     elsif action_name == 'edit'
-      posts_path(@post.id)
+      post_path(@post.id)
     else 
       posts_path
     end
