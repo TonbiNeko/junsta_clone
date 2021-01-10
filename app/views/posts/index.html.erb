@@ -1,27 +1,24 @@
-<h1>Posts</h1>
-<%= notice %>
+<div class="new_post_link">
+  <%= link_to '新規投稿', new_post_path%>
+</div>
+<h1>みんなの投稿</h1>
 <br>
-  <% @posts.each do |post| %>
-    <div>
-      <p><%= post.user.name %>さんの投稿<p>
-      <strong>title:</strong>
-      <p><%= post.title %></p>
-    </div>
-    <div>
+<% @posts.each do |post| %>
+  <div class="card" style="width: 35rem;">
+    <div class="card-img-top">
       <p><%= image_tag post.image.url if post.image.url.present? %></p>
     </div>
-    <div>
-      <strong>content:</strong>
-      <p><%= post.content %></p>
-    </div>
-    <div>
-      <%= link_to 'show', post_path(post.id) %>
-      <br>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">投稿者：<%= post.user.name %></li>
+      <li class="list-group-item">タイトル：<%= post.title %></li>
+      <li class="list-group-item">内容：<%= post.content %></li>
+      <li class="show_page_link"><%= link_to '詳細', post_path(post.id) %></li>
       <% if post.user == current_user %>
-        <%= link_to 'edit', edit_post_path(post.id) %>
+        <li><%= link_to '編集', edit_post_path(post.id) %></li>
         <br>
-        <%= link_to 'delete', post_path(post.id), method: :delete, data: { confirm: "本当に削除していいですか？" } %>
+        <li><%= link_to '削除', post_path(post.id), method: :delete, data: { confirm: "本当に削除していいですか？" } %></li>
       <% end %>
-    </div>
-  <% end %>
-<%= link_to 'New post', new_post_path %>
+    </ul>
+  </div>
+<% end %>
+

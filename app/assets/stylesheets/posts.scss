@@ -1,3 +1,35 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_post_link {
+  padding: 30px;
+  font-size: 1.5rem;
+  a:hover {
+    color: rgb(195, 230, 41);
+    text-decoration: none;
+  }
+}
+.back_link {
+  padding: 10px;
+}
+.new_post {
+  padding: 20px;
+}
+.edit_post {
+  padding: 20px;
+}
+.btn {
+  background-color: rgb(173, 247, 113);
+  color: white;
+  margin-top: 20px;
+}
+.post_btn {
+  margin: 30px;
+}
+.heart {
+  color: red;
+}
+.like {
+  padding: 30px;
+}

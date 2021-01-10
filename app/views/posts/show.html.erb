@@ -1,23 +1,21 @@
-<h1>Show page</h1>
-<strong>title</strong>
-<br>
-<%= @post.title %>
-<br>
-<strong>image</strong>
-<br>
-<%= image_tag @post.image.url if @post.image.url.present? %>
-<br>
-<strong>content</strong>
-<br>
-<%= @post.content %>
-<br>
-
+<h1>投稿詳細</h1>
+<div class="card" style="width: 35rem;">
+  <div class="card-img-top">
+    <%= image_tag @post.image.url if @post.image.url.present? %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">タイトル：<%= @post.title %></li>
+    <li class="list-group-item">内容：<%= @post.content %></li>
+  </ul>
+</div>
+<div class="like">
 <% unless @post.user_id == current_user.id %>
   <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete %>
+    <i class="fas fa-heart fa-lg heart"></i>
   <% else %>
-    <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+    <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post %>
+    <i class="far fa-heart fa-lg heart"></i>
   <% end %>
+</div>
 <% end %>
-
-<%= link_to 'New post', new_post_path %>

@@ -1,26 +1,32 @@
 <%= form_with(model: @post, local: true, url:choose_new_or_edit ) do |form| %>
   <% if @post.errors.any? %>
-    <p><%= @post.errors.count %>件のエラー！</p>
-    <ul>
+    <h2><%= @post.errors.count %>件のエラーがあります</h2>
+    <ul class="error_messages">
       <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+        <li class="alert alert-warning" role="alert"><%= msg %></li>
       <% end %>
     </ul>
   <% end %>
 
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <%= form.label :タイトル %>
+  <br>
+  <%= form.text_field :title, size: 40 %>
+  <br>
+  <br>
+  <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
+  <br>
+  <%= form.file_field :image %>
+  <br>
+  <%= form.hidden_field :image_cache %>
+  <br>
+  <%= form.label :内容 %>
+  <br>
+  <%= form.text_field :content, size: 40 %>
+  <br>
+  <br>
+  <%= form.submit('投稿',class: 'btn btn-lg my-1 mb-5 px-5') %> 
+  <br>
+  <div class="back_link">
+    <%= link_to "戻る", posts_path %>
   </div>
-  <div>
-    <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
-  </div>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <%= form.submit %>
 <% end %>
-<%= link_to "Back", posts_path %>

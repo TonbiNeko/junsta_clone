@@ -1,14 +1,20 @@
-<h2>以下の内容で投稿する</h2>
+<h2>以下の内容でよろしいですか？</h2>
 <%= form_with(model: @post, local: true) do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :image_cache %>
-  <%= form.hidden_field :content %>
-  <%= @post.title %>
-  <br>
-  <%= image_tag @post.image.url if @post.image.url.present? %>
-  <br>
-  <%= @post.content %>
-  <br>
-  <%= form.submit "投稿する" %>
-  <%= form.submit "戻る", name: 'back' %>
+  <div class="card" style="width: 35rem;">
+    <%= form.hidden_field :title %>
+    <%= form.hidden_field :image_cache %>
+    <%= form.hidden_field :content %>
+    <div class="card-img-top">
+      <p><%= image_tag @post.image.url if @post.image.url.present? %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">タイトル：<%= @post.title %></li>
+      <li class="list-group-item">内容：<%= @post.content %></li>
+    </ul>
+  </div>
+  <div class="post_btn">
+    <%= form.submit "投稿", class: 'btn btn-lg my-1 mb-5 px-5'%>
+    <br>
+    <%= link_to "戻る", posts_path %>
+  </div>
 <% end %>
